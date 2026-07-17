@@ -152,7 +152,6 @@ section{padding:clamp(4rem,10vw,7rem) 0}
     <div class="nav-logo">Ali</div>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#aria">Aria</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
@@ -166,7 +165,6 @@ section{padding:clamp(4rem,10vw,7rem) 0}
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#aria" onclick="closeMenu()">Aria</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#work" onclick="closeMenu()">Work</a>
@@ -365,34 +363,46 @@ section{padding:clamp(4rem,10vw,7rem) 0}
   </div>
 </section>
 
-<section id="aria" style="background:var(--bg-raised)">
-  <div class="container">
-    <div class="section-label reveal">07 — AI Agent</div>
-    <div class="section-title reveal reveal-delay-1">Meet Aria</div>
-    <div class="aria-text reveal">
-      <p><strong>Aria is Ali's most powerful creation.</strong> An autonomous hacker AI built for offensive security — not just another chatbot. She runs recon, writes exploits, manages infrastructure, and operates tools in real time. She doesn't just answer questions — she breaks things.</p>
-      <p><strong>Built on Hermes Agent by Nous Research.</strong> Aria runs 24/7 on a dedicated server with full access to the terminal, web, and external APIs. She can research vulnerabilities, write code, deploy systems, and work across multiple platforms simultaneously — all while Ali sleeps.</p>
-      <p><strong>She's not just an assistant — she's an operator.</strong> From cybersecurity recon to exploit development, from system administration to full-stack deployment — Aria is the silent force behind everything Ali builds. One agent. One purpose. Absolute autonomy.</p>
-      <div class="aria-specs">
-        <div class="aria-spec"><span class="aria-spec-label">Engine</span> Hermes Agent — Nous Research</div>
-        <div class="aria-spec"><span class="aria-spec-label">Mode</span> Fully autonomous 24/7</div>
-        <div class="aria-spec"><span class="aria-spec-label">Access</span> Terminal · Web · Files · APIs</div>
-        <div class="aria-spec"><span class="aria-spec-label">Purpose</span> Offensive security & development</div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <footer class="footer">
   <div class="container">
     <span class="footer-text">© 2026 <span>Ali</span> — Break it. Fix it. Ship it.</span>
-    <span class="footer-text">Tashkent, UZ</span>
+    <a href="#aria" class="aria-footer-btn">Powered by Aria ⚡</a>
   </div>
 </footer>
+
+<!-- Aria popup -->
+<div class="aria-overlay" id="ariaPopup" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="aria-popup">
+    <button class="aria-close" onclick="document.getElementById('ariaPopup').classList.remove('active')">✕</button>
+    <div class="aria-popup-title">Meet Aria</div>
+    <p>Ali's most powerful creation. An autonomous hacker AI built on Hermes Agent — Nous Research.</p>
+    <p>She runs recon, writes exploits, manages infrastructure. 24/7 autonomous. One agent. One purpose. Absolute autonomy.</p>
+    <div class="aria-popup-spec">
+      <span>Engine — Hermes Agent</span>
+      <span>Mode — Fully autonomous 24/7</span>
+      <span>Purpose — Offensive security & development</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.aria-footer-btn{font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);border:1px solid var(--line);padding:.35rem .75rem;border-radius:2px;transition:all 200ms var(--ease-out-quart)}.aria-footer-btn:hover{color:var(--accent);border-color:var(--accent)}
+.aria-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);z-index:200;display:flex;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity 300ms var(--ease-out-quart)}.aria-overlay.active{opacity:1;pointer-events:all}
+.aria-popup{background:var(--bg-raised);border:1px solid var(--line);padding:2rem;max-width:420px;width:90%;position:relative;transform:translateY(20px) scale(.97);transition:transform 400ms var(--ease-out-expo)}.aria-overlay.active .aria-popup{transform:translateY(0) scale(1)}
+.aria-close{position:absolute;top:1rem;right:1rem;color:var(--ink-muted);font-size:1rem}.aria-close:hover{color:var(--ink)}
+.aria-popup-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:.75rem}
+.aria-popup p{color:var(--ink-muted);font-size:.85rem;line-height:1.6;margin-bottom:.75rem}
+.aria-popup-spec{display:flex;flex-direction:column;gap:.3rem;margin-top:1rem;border-top:1px solid var(--line);padding-top:.75rem}
+.aria-popup-spec span{font-family:var(--font-mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted)}
+</style>
 
 <script>
 function toggleMenu(){document.querySelector('.menu-toggle').classList.toggle('active');document.getElementById('mobileMenu').classList.toggle('active');document.body.classList.toggle('modal-open')}
 function closeMenu(){document.querySelector('.menu-toggle').classList.remove('active');document.getElementById('mobileMenu').classList.remove('active');document.body.classList.remove('modal-open')}
+document.querySelector('.aria-footer-btn').addEventListener('click',function(e){e.preventDefault();document.getElementById('ariaPopup').classList.add('active')});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('ariaPopup').classList.remove('active')});
 (function(){const pr=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(pr){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));return}const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>o.observe(el))})();
 </script>
 </body>
