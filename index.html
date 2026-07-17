@@ -60,6 +60,13 @@ section{padding:clamp(4rem,10vw,7rem) 0}
 .section-label{font-family:var(--font-mono);font-size:var(--text-label);text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.4rem}
 .section-title{font-family:var(--font-display);font-size:var(--text-h2);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:2.5rem}
 
+/* ARIA */
+.aria-text p{color:var(--ink-muted);margin-bottom:1.25rem;line-height:1.7;max-width:65ch}.aria-text p strong{color:var(--ink);font-weight:500}
+.aria-specs{margin-top:2rem;display:flex;flex-direction:column;gap:0;border:1px solid var(--line);max-width:480px}
+.aria-spec{display:flex;align-items:center;padding:.65rem 1rem;border-bottom:1px solid var(--line);font-size:.85rem}.aria-spec:last-child{border-bottom:none}
+.aria-spec-label{font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);width:100px;flex-shrink:0}
+.aria-spec:nth-child(n+2){color:var(--ink-muted)}
+
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--gutter);align-items:start}
 .about-text p{color:var(--ink-muted);margin-bottom:1.25rem;line-height:1.7}.about-text p strong{color:var(--ink);font-weight:500}
@@ -142,9 +149,10 @@ section{padding:clamp(4rem,10vw,7rem) 0}
 
 <nav class="nav">
   <div class="container">
-    <div class="nav-logo"><span>⚡</span> Ali</div>
+    <div class="nav-logo">Ali</div>
     <div class="nav-right">
       <ul class="nav-links">
+        <li><a href="#aria">Aria</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
@@ -158,6 +166,7 @@ section{padding:clamp(4rem,10vw,7rem) 0}
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#aria" onclick="closeMenu()">Aria</a>
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#services" onclick="closeMenu()">Services</a>
   <a href="#work" onclick="closeMenu()">Work</a>
@@ -168,8 +177,7 @@ section{padding:clamp(4rem,10vw,7rem) 0}
 
 <section class="hero" id="hero">
   <div class="container">
-    <div class="hero-badge reveal"><span class="pulse"></span> Red Team · Black Hat · Offensive</div>
-    <h1 class="reveal reveal-delay-1">I break things <em>at night</em></h1>
+    <h1 class="reveal">I break things <em>at night</em></h1>
     <p class="hero-sub reveal reveal-delay-2">Cybersecurity specialist with 2 years in offensive security. Red team operator, black hat hacker, and penetration tester. DDoS research, exploitation, and teaching — I find the vulnerabilities others miss.</p>
     <div class="hero-actions reveal reveal-delay-3">
       <a href="#contact" class="btn-primary">Hire me</a>
@@ -206,6 +214,26 @@ section{padding:clamp(4rem,10vw,7rem) 0}
     <span class="marquee-item">Privilege Escalation<span>·</span></span>
   </div>
 </div>
+
+<!-- ARIA -->
+<section id="aria">
+  <div class="container">
+    <div class="section-label reveal">01 — AI Agent</div>
+    <div class="section-title reveal reveal-delay-1">Meet Aria</div>
+    <div class="aria-text reveal">
+      <p><strong>Aria is Ali's most powerful creation.</strong> An autonomous AI agent built to work — not just chat. She runs tasks, writes code, manages systems, and operates tools in real time. She doesn't just answer questions — she gets things done.</p>
+      <p><strong>Built on Hermes Agent by Nous Research.</strong> Aria runs 24/7 on a dedicated server with full access to the terminal, web, file systems, and external APIs. She can delegate tasks to subagents, schedule jobs, and work across multiple platforms simultaneously.</p>
+      <p><strong>She's not just an assistant — she's an operator.</strong> From cybersecurity recon to website deployment, from code review to system administration — Aria handles it all while Ali sleeps. She is the backbone of ARIA Creative Studio.</p>
+      <div class="aria-specs">
+        <div class="aria-spec"><span class="aria-spec-label">Engine</span> Hermes Agent — Nous Research</div>
+        <div class="aria-spec"><span class="aria-spec-label">Workers</span> 2× NullClaw parallel agents</div>
+        <div class="aria-spec"><span class="aria-spec-label">Skills</span> 22 specialized modules</div>
+        <div class="aria-spec"><span class="aria-spec-label">Uptime</span> 24/7 autonomous operation</div>
+        <div class="aria-spec"><span class="aria-spec-label">Access</span> Terminal · Web · Files · APIs</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="about">
   <div class="container">
