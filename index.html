@@ -50,11 +50,7 @@ img{max-width:100%;display:block}
 @keyframes preloaderLoad{to{width:100%}}
 .preloader-text{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 
-/* CURSOR */
-.cursor{position:fixed;width:16px;height:16px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;mix-blend-mode:difference;transition:transform .15s var(--ease-out-expo),width .3s var(--ease-out-expo),height .3s var(--ease-out-expo);transform:translate(-50%,-50%)}
-.cursor-dot{position:fixed;width:4px;height:4px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-.cursor.hover{width:48px;height:48px;border-color:var(--accent)}
-@media(max-width:768px){.cursor,.cursor-dot{display:none}}
+
 
 /* NOISE OVERLAY */
 body::after{content:"";position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:9999}
@@ -110,16 +106,7 @@ body::after{content:"";position:fixed;inset:0;background-image:url("data:image/s
 .btn-outline:hover::before{transform:scaleX(1)}
 .btn-outline:hover{color:var(--accent);border-color:var(--accent)}
 .btn-outline span{position:relative;z-index:1}
-.hero-terminal{position:absolute;bottom:8rem;right:var(--gutter);width:320px;background:var(--bg-raised);border:1px solid var(--line);border-radius:4px;overflow:hidden;opacity:0;animation:fadeUp .8s var(--ease-out-expo) 1s forwards;font-family:var(--font-mono);font-size:.65rem}
-.hero-terminal-header{padding:.5rem .75rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.5rem}
-.hero-terminal-dots{display:flex;gap:.35rem}
-.hero-terminal-dots span{width:7px;height:7px;border-radius:50%}.hero-terminal-dots span:nth-child(1){background:#FF5F56}.hero-terminal-dots span:nth-child(2){background:#FFBD2E}.hero-terminal-dots span:nth-child(3){background:#27C93F}
-.hero-terminal-title{color:var(--ink-muted);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase}
-.hero-terminal-body{padding:.75rem;min-height:120px;color:var(--accent);line-height:1.8}
-.hero-terminal-body .prompt{color:var(--ink-muted)}
-.hero-terminal-body .cmd{color:var(--accent)}
-.hero-terminal-body .output{color:var(--ink-dim)}
-.hero-terminal-body .cursor-blink{animation:blink 1s step-end infinite}
+
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .hero-scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeUp .8s var(--ease-out-expo) 1.2s forwards}
 .hero-scroll span{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted)}
@@ -323,9 +310,7 @@ a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible{outline:2p
   <div class="preloader-text">Initializing secure connection...</div>
 </div>
 
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-dot" id="cursorDot"></div>
+
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
@@ -381,16 +366,7 @@ a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible{outline:2p
     </div>
   </div>
 
-  <!-- TERMINAL -->
-  <div class="hero-terminal" id="heroTerminal">
-    <div class="hero-terminal-header">
-      <div class="hero-terminal-dots"><span></span><span></span><span></span></div>
-      <div class="hero-terminal-title">aria@ali ~ </div>
-    </div>
-    <div class="hero-terminal-body" id="terminalBody">
-      <div class="prompt">$</div>
-    </div>
-  </div>
+
 
   <div class="hero-scroll">
     <span>Scroll</span>
@@ -903,17 +879,7 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{document.getElementById('preloader').classList.add('done')},2200)
 })
 
-// CURSOR
-const cursor=document.getElementById('cursor')
-const cursorDot=document.getElementById('cursorDot')
-let mouseX=0,mouseY=0,cursorX=0,cursorY=0
-document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;cursorDot.style.left=mouseX+'px';cursorDot.style.top=mouseY+'px'})
-function animateCursor(){cursorX+=(mouseX-cursorX)*.15;cursorY+=(mouseY-cursorY)*.15;cursor.style.left=cursorX+'px';cursor.style.top=cursorY+'px';requestAnimationFrame(animateCursor)}
-animateCursor()
-document.querySelectorAll('a,button,.service-card,.work-card,.stack-item,.contact-link').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cursor.classList.add('hover'))
-  el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'))
-})
+
 
 // NAV SCROLL
 const nav=document.getElementById('nav')
@@ -923,46 +889,7 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scr
 function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('active');document.getElementById('menuToggle').classList.toggle('active')}
 function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('active');document.getElementById('menuToggle').classList.remove('active')}
 
-// HERO TERMINAL TYPING
-const terminalLines=[
-  {type:'prompt',text:'aria@ali:~$'},
-  {type:'cmd',text:' nmap -sV target.com'},
-  {type:'output',text:'Starting Nmap scan...'},
-  {type:'output',text:'PORT     STATE SERVICE'},
-  {type:'success',text:'22/tcp   open  ssh'},
-  {type:'success',text:'80/tcp   open  http'},
-  {type:'error',text:'443/tcp  open  https [VULN]'},
-  {type:'prompt',text:'aria@ali:~$'},
-  {type:'cmd',text:' whoami'},
-  {type:'output',text:'Ali — Red Team Operator'},
-  {type:'prompt',text:'aria@ali:~$'},
-  {type:'cmd',text:' uptime'},
-  {type:'output',text:'2 years in the game'},
-]
-const terminalBody=document.getElementById('terminalBody')
-let terminalIndex=0
-function typeTerminal(){
-  if(terminalIndex>=terminalLines.length){terminalIndex=0;terminalBody.innerHTML=''}
-  const line=terminalLines[terminalIndex]
-  const div=document.createElement('div')
-  div.className='terminal-line visible'
-  if(line.type==='prompt')div.innerHTML=`<span class="prompt">${line.text}</span>`
-  else if(line.type==='cmd')div.innerHTML=`<span class="cmd">${line.text}</span>`
-  else if(line.type==='success')div.innerHTML=`<span class="success">${line.text}</span>`
-  else if(line.type==='error')div.innerHTML=`<span class="error">${line.text}</span>`
-  else div.innerHTML=`<span class="output">${line.text}</span>`
-  terminalBody.appendChild(div)
-  terminalIndex++
-  if(terminalIndex>=terminalLines.length){
-    const cursor=document.createElement('div')
-    cursor.innerHTML='<span class="prompt">$</span> <span class="cursor-blink">█</span>'
-    terminalBody.appendChild(cursor)
-    setTimeout(typeTerminal,4000)
-  }else{
-    setTimeout(typeTerminal,400+Math.random()*300)
-  }
-}
-setTimeout(typeTerminal,3000)
+
 
 // SCROLL REVEAL
 const revealElements=document.querySelectorAll('.reveal')
