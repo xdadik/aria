@@ -81,12 +81,6 @@ img { max-width: 100%; display: block }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 /* GLOW BORDER ON HOVER */
-.glow-border{position:relative;overflow:hidden}
-.glow-border::after{content:"";position:absolute;inset:-2px;background:conic-gradient(from 0deg,var(--accent),transparent,var(--accent),transparent,var(--accent));border-radius:inherit;z-index:-1;opacity:0;transition:opacity .4s;animation:glowSpin 4s linear infinite}
-.glow-border:hover::after{opacity:1}
-@keyframes glowSpin{to{transform:rotate(360deg)}}
-
-/* TEXT SCRAMBLE */
 .scramble{display:inline-block;position:relative}
 
 /* MAGNETIC BUTTON */
@@ -1423,7 +1417,7 @@ input:focus-visible, textarea:focus-visible {
       <h2 class="section-title">Credentials &amp; <em>languages.</em></h2>
     </div>
     <div class="certs-grid">
-      <div class="cert-card reveal glow-border">
+      <div class="cert-card reveal">
         <div class="cert-card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
         </div>
