@@ -221,7 +221,8 @@ section{padding:clamp(4rem,10vh,8rem) 0}
 .stack-item:hover{border-color:var(--accent);transform:translateY(-2px)}
 .stack-item::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .3s var(--ease-out-expo)}
 .stack-item:hover::after{transform:scaleX(1)}
-.stack-icon{font-size:1.5rem;margin-bottom:.75rem}
+.stack-svg{width:32px;height:32px;margin:0 auto .75rem;color:var(--accent);transition:transform .3s var(--ease-out-expo)}
+.stack-item:hover .stack-svg{transform:scale(1.1)}
 .stack-name{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
 
 /* TIMELINE */
@@ -238,10 +239,13 @@ section{padding:clamp(4rem,10vh,8rem) 0}
 .certs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
 .cert-card{background:var(--bg-raised);border:1px solid var(--line);padding:2rem;text-align:center;transition:all .3s var(--ease-out-expo);position:relative}
 .cert-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-.cert-icon{font-size:2rem;margin-bottom:1rem}
-.cert-name{font-family:var(--font-display);font-size:.95rem;font-weight:600;margin-bottom:.5rem}
-.cert-status{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.cert-status.pending{color:var(--ink-muted)}
+.cert-card-icon{width:48px;height:48px;margin:0 auto 1rem;color:var(--accent);background:var(--accent-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:.75rem}
+.cert-card-icon svg{width:24px;height:24px}
+.cert-card-badge{display:inline-block;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .75rem;border:1px solid var(--accent);color:var(--accent);margin-bottom:.75rem}
+.cert-card-badge.pending{border-color:var(--ink-muted);color:var(--ink-muted)}
+.cert-name{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:.25rem}
+.cert-full{font-size:.75rem;color:var(--ink-muted);margin-bottom:.5rem}
+.cert-year{font-family:var(--font-mono);font-size:.6rem;color:var(--accent);letter-spacing:.08em}
 @media(max-width:768px){.certs-grid{grid-template-columns:repeat(2,1fr)}}
 
 /* LANGUAGES */
@@ -559,39 +563,7 @@ a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible{outline:2p
 </section>
 
 <!-- TERMINAL -->
-<section class="terminal-section" id="terminal">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">03 — Terminal</div>
-      <h2 class="section-title">Watch me <em>work.</em></h2>
-    </div>
-    <div class="terminal-window reveal">
-      <div class="terminal-header">
-        <div class="terminal-header-left">
-          <div class="terminal-dots"><span></span><span></span><span></span></div>
-          <div class="terminal-header-title">aria@ali:~</div>
-        </div>
-        <div class="terminal-header-title">bash</div>
-      </div>
-      <div class="terminal-body" id="mainTerminal">
-        <div class="terminal-line visible"><span class="comment"># Reconnaissance phase</span></div>
-        <div class="terminal-line visible"><span class="prompt">ali@kali:~$</span> <span class="cmd">nmap -sV -sC -O target.com</span></div>
-        <div class="terminal-line visible"><span class="output">Starting Nmap 7.94 ( https://nmap.org )</span></div>
-        <div class="terminal-line visible"><span class="output">Scanning target.com [1000 ports]</span></div>
-        <div class="terminal-line visible"><span class="success">PORT     STATE SERVICE VERSION</span></div>
-        <div class="terminal-line visible"><span class="output">22/tcp   open  ssh     OpenSSH 8.4</span></div>
-        <div class="terminal-line visible"><span class="output">80/tcp   open  http    Apache/2.4.51</span></div>
-        <div class="terminal-line visible"><span class="error">443/tcp  open  https   nginx/1.18.0 [VULNERABLE]</span></div>
-        <div class="terminal-line visible"><span class="comment"># Vulnerability found</span></div>
-        <div class="terminal-line visible"><span class="prompt">ali@kali:~$</span> <span class="cmd">nuclei -u target.com -t cves/</span></div>
-        <div class="terminal-line visible"><span class="success">[critical] CVE-2024-3094 detected on port 443</span></div>
-        <div class="terminal-line visible"><span class="success">[high] SQL Injection found on /api/v1/users</span></div>
-        <div class="terminal-line visible"><span class="success">[medium] Open redirect on /login?next=</span></div>
-        <div class="terminal-line visible"><span class="prompt">ali@kali:~$</span> <span class="cursor-blink">█</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- WORK -->
 <section id="work">
@@ -677,22 +649,70 @@ a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible{outline:2p
       <h2 class="section-title">Tools of the <em>trade.</em></h2>
     </div>
     <div class="stack-grid">
-      <div class="stack-item reveal"><div class="stack-icon">🔧</div><div class="stack-name">Nmap</div></div>
-      <div class="stack-item reveal reveal-delay-1"><div class="stack-icon">🎯</div><div class="stack-name">Metasploit</div></div>
-      <div class="stack-item reveal reveal-delay-2"><div class="stack-icon">🔍</div><div class="stack-name">Nuclei</div></div>
-      <div class="stack-item reveal reveal-delay-3"><div class="stack-icon">🐍</div><div class="stack-name">Python</div></div>
-      <div class="stack-item reveal"><div class="stack-icon">🐧</div><div class="stack-name">Linux</div></div>
-      <div class="stack-item reveal reveal-delay-1"><div class="stack-icon">💀</div><div class="stack-name">Burp Suite</div></div>
-      <div class="stack-item reveal reveal-delay-2"><div class="stack-icon">🌐</div><div class="stack-name">Wireshark</div></div>
-      <div class="stack-item reveal reveal-delay-3"><div class="stack-icon">⚡</div><div class="stack-name">Kali Linux</div></div>
-      <div class="stack-item reveal"><div class="stack-icon">🛡️</div><div class="stack-name">John</div></div>
-      <div class="stack-item reveal reveal-delay-1"><div class="stack-icon">🔓</div><div class="stack-name">Hashcat</div></div>
-      <div class="stack-item reveal reveal-delay-2"><div class="stack-icon">📡</div><div class="stack-name">Aircrack</div></div>
-      <div class="stack-item reveal reveal-delay-3"><div class="stack-icon">🏗️</div><div class="stack-name">Docker</div></div>
-      <div class="stack-item reveal"><div class="stack-icon">🌐</div><div class="stack-name">Git</div></div>
-      <div class="stack-item reveal reveal-delay-1"><div class="stack-icon">🤖</div><div class="stack-name">SQLMap</div></div>
-      <div class="stack-item reveal reveal-delay-2"><div class="stack-icon">🎯</div><div class="stack-name">Hydra</div></div>
-      <div class="stack-item reveal reveal-delay-3"><div class="stack-icon">📡</div><div class="stack-name">Cobalt Strike</div></div>
+      <div class="stack-item reveal">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="stack-name">Nmap</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-1">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="stack-name">Metasploit</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-2">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div class="stack-name">Nuclei</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-3">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <div class="stack-name">Python</div>
+      </div>
+      <div class="stack-item reveal">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        <div class="stack-name">Linux</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-1">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+        <div class="stack-name">Burp Suite</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-2">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <div class="stack-name">Wireshark</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-3">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <div class="stack-name">Kali Linux</div>
+      </div>
+      <div class="stack-item reveal">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <div class="stack-name">John</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-1">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        <div class="stack-name">Hashcat</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-2">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
+        <div class="stack-name">Aircrack</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-3">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        <div class="stack-name">Docker</div>
+      </div>
+      <div class="stack-item reveal">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <div class="stack-name">Git</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-1">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        <div class="stack-name">SQLMap</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-2">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div class="stack-name">Hydra</div>
+      </div>
+      <div class="stack-item reveal reveal-delay-3">
+        <svg class="stack-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <div class="stack-name">Cobalt Strike</div>
+      </div>
     </div>
   </div>
 </section>
@@ -706,24 +726,40 @@ a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible{outline:2p
     </div>
     <div class="certs-grid">
       <div class="cert-card reveal">
-        <div class="cert-icon">🏆</div>
+        <div class="cert-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <div class="cert-card-badge pending">In Progress</div>
         <div class="cert-name">CEH</div>
-        <div class="cert-status pending">In Progress — 2026</div>
+        <div class="cert-full">Certified Ethical Hacker</div>
+        <div class="cert-year">2026</div>
       </div>
       <div class="cert-card reveal reveal-delay-1">
-        <div class="cert-icon">🌍</div>
-        <div class="cert-name">English</div>
-        <div class="cert-status">B2 Level</div>
+        <div class="cert-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="cert-card-badge">Active</div>
+        <div class="cert-name">Pen Testing</div>
+        <div class="cert-full">Authorized Assessments</div>
+        <div class="cert-year">2024 — Present</div>
       </div>
       <div class="cert-card reveal reveal-delay-2">
-        <div class="cert-icon">🗣️</div>
-        <div class="cert-name">Russian</div>
-        <div class="cert-status">Native</div>
+        <div class="cert-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="cert-card-badge">Active</div>
+        <div class="cert-name">Red Team</div>
+        <div class="cert-full">Offensive Operations</div>
+        <div class="cert-year">2025 — Present</div>
       </div>
       <div class="cert-card reveal reveal-delay-3">
-        <div class="cert-icon">📚</div>
-        <div class="cert-name">History</div>
-        <div class="cert-status">B Level</div>
+        <div class="cert-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="cert-card-badge">Active</div>
+        <div class="cert-name">DDoS Research</div>
+        <div class="cert-full">Attack Vector Analysis</div>
+        <div class="cert-year">2024 — Present</div>
       </div>
     </div>
     <div style="margin-top:4rem">
