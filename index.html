@@ -108,11 +108,7 @@ body::after{content:"";position:fixed;inset:0;background-image:url("data:image/s
 .btn-outline span{position:relative;z-index:1}
 
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.hero-scroll{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeUp .8s var(--ease-out-expo) 1.2s forwards}
-.hero-scroll span{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-muted)}
-.scroll-line{width:1px;height:40px;background:var(--line);position:relative;overflow:hidden}
-.scroll-line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--accent);animation:scrollAnim 2s ease-in-out infinite}
-@keyframes scrollAnim{0%{top:-100%}50%{top:0}100%{top:100%}}
+
 
 /* MARQUEE */
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0;overflow:hidden;white-space:nowrap}
@@ -368,10 +364,7 @@ a:focus-visible,.btn-primary:focus-visible,.btn-outline:focus-visible{outline:2p
 
 
 
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+
 </section>
 
 <!-- MARQUEE -->
